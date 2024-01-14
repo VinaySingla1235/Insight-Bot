@@ -24,9 +24,10 @@ export const verifyToken=async (req:Request,res:Response,next:NextFunction)=>{
                 return next(errorHandler(401,"Token Expired"));
             }
             else{
-                console.log("Token verification successfull");
+                
                 resolve();
                 res.locals.jwtData=success;
+                console.log("Token verification successfull");
                 return next();
             }
         })

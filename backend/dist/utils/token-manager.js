@@ -20,9 +20,9 @@ export const verifyToken = async (req, res, next) => {
                 return next(errorHandler(401, "Token Expired"));
             }
             else {
-                console.log("Token verification successfull");
                 resolve();
                 res.locals.jwtData = success;
+                console.log("Token verification successfull");
                 return next();
             }
         });
