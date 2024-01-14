@@ -44,11 +44,11 @@ const Chat = () => {
         });
     }
   }, [auth]);
-  useEffect(()=>{
-    if(!auth?.user){
-      return navigate("/login");
+  useEffect(() => {
+    if (!auth?.user) {
+      navigate("/login");
     }
-  })
+  }, [auth?.user, navigate]);
   const handleDeleteChats = async () => {
     try {
       toast.loading("Deleting Chats", { id: "deletechats" });
@@ -98,8 +98,8 @@ const Chat = () => {
               fontWeight: 700,
             }}
           >
-            {auth?.user?.name[0]}
-            {auth?.user?.name.split(" ")[1][0]}
+            {auth?.user?.name?.[0]}
+  {auth?.user?.name?.split(" ")[1]?.[0]}
           </Avatar>
           <Typography sx={{ mx: "auto", fontFamily: "work sans" }}>
             You are talking to a ChatBot

@@ -30,7 +30,7 @@ export const AuthProvider=({children}:{children:ReactNode})=>{
             try {
                 const data=await checkAuthStatus();
             if(data){
-                //console.log(data);
+                console.log(data);
                 let obj={
                     email:data.email,
                     name:data.name
@@ -61,12 +61,12 @@ export const AuthProvider=({children}:{children:ReactNode})=>{
 
     }
     const signup=async(name:string,email:string,password:string)=>{
-        await signupUser(name,email,password);
-        // setIsLoggedIn(true);
-        // if(data){
-        //     setUser({name:data.name,email:data.email});
-        //     setIsLoggedIn(true);
-        // }
+        const data=await signupUser(name,email,password);
+        setIsLoggedIn(true);
+        if(data){
+            setUser({name:data.name,email:data.email});
+            setIsLoggedIn(true);
+        }
     }
     const logout=async()=>{
         await logoutUser();
