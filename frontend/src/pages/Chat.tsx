@@ -22,10 +22,17 @@ const Chat = () => {
       inputRef.current.value="";
 
     }
-    const newMessage:Message={role:"user",content};
-    setChatMessages((prev)=>[...prev,newMessage]);
-    const chatData=await sendChatRequest(content);
-    setChatMessages([...chatData.chats]);
+    try {
+      toast.loading("thinking",{id:"thinking"});
+      const newMessage:Message={role:"user",content};
+      setChatMessages((prev)=>[...prev,newMessage]);
+      const chatData=await sendChatRequest(content);
+      setChatMessages([...chatData.chats]);
+      toast.success("Succesfully got solution of your problem",{id:"thinking"})
+    } catch (error) {
+      toast.error("Some problem occured please try again",{id:"thinking"});
+    }
+    
   }
   const [chatMessages,setChatMessages]=useState<Message[]>([]);
   
